@@ -34,8 +34,8 @@ Figure 2: Configuring Entra ID (formerly Azure AD) users and role-based access c
 Onboarded the Windows 11 virtual machine into Azure using Azure Arc, enabling it to be managed as a native cloud resource.
 The onboarding process required secure script execution and validation of connectivity between local infrastructure and Azure services. Once connected, the machine became available for monitoring and agent deployment.
 Figure 3: Successful integration of the local Windows 11 host into the Azure control plane via Azure Arc, allowing for centralized management and monitoring. ![Azure Arc Connection](img/VM.png)
-### Local Network Configuration
-Figure 4: Configuring static IPv4 settings on the local virtual network to ensure consistent communication between the Domain Controller and the endpoint. ![Network config](img/IP CONFIG.png)
+### * **Local Network Configuration* **
+Figure 4: Configuring static IPv4 settings on the local virtual network to ensure consistent communication between the Domain Controller and the endpoint. ![Network config](img/IPCONFIG.png)
 
 * **Phase 3: Log Ingestion and Detection Setup* **
 Deployed the Azure Monitor Agent and configured Data Collection Rules (DCRs) to ingest Windows Security Events into the SIEM.
@@ -87,7 +87,7 @@ These challenges improved my understanding of how cloud constraints, endpoint se
 	• Validated SIEM effectiveness through simulated attack scenarios
 	• Gained practical experience troubleshooting real-world cloud and endpoint issues
 
-Figure 6: Azure Portal dashboard overview, showing active monitoring resources and the SIEM-LAB Log Analytics Workspace status. ![Summary](img/Dashboard Azure.png)
+Figure 6: Azure Portal dashboard overview, showing active monitoring resources and the SIEM-LAB Log Analytics Workspace status. ![Summary](img/DashboardAzure.png)
 
 ## 7. Conclusion
 This project demonstrates the ability to design, implement, and validate a hybrid SIEM solution using modern cloud security tools. More importantly, it reflects an understanding of how to move beyond setup into detection, validation, and troubleshooting—skills directly applicable to SOC analyst and entry-level cybersecurity roles.
