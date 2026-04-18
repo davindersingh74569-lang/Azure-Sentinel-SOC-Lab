@@ -50,7 +50,7 @@ Example detection logic for brute-force activity:
 SecurityEvent
 | where EventID == 4625
 | summarize FailedAttempts = count() by TargetAccount, bin(TimeGenerated, 5m)
-| where FailedAttempts > 5
+| where FailedAttempts > 4
 | order by FailedAttempts desc
 ```
 This allows identification of accounts experiencing repeated failed login attempts within a short timeframe, a common indicator of password-based attacks.
