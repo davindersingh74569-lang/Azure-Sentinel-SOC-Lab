@@ -23,23 +23,28 @@ The solution follows a hybrid monitoring model where on-premises systems are ext
 	• VirtualBox-hosted Windows Server 2022 (Domain Controller)
 	• Windows 11 (client workstation used for attack simulation and telemetry validation)
 This architecture reflects a real-world enterprise approach where hybrid environments are monitored through a unified SIEM.
-Figure 1: On-premises virtualization environment in Oracle VirtualBox, featuring a Windows Server 2022 Domain Controller and a Windows 11 target workstation. ![VirtualBox Infrastructure](img/VMS.png)
+
+![VirtualBox Infrastructure](img/VMS.png)
+Figure 1: On-premises virtualization environment in Oracle VirtualBox, featuring a Windows Server 2022 Domain Controller and a Windows 11 target workstation. 
 
 ## 3. Implementation Approach
 * **Phase 1: Identity and Cloud Foundation* **
 Configured Azure identity and governance to support SIEM deployment. This included establishing administrative access, organising resources into a dedicated group, and deploying a Log Analytics Workspace to act as the central data store for security logs.
 
-Figure 2: Configuring Entra ID (formerly Azure AD) users and role-based access control (RBAC) to manage security operations within the Azure tenant. ![Entra ID Users](img/Users.png)
+![Entra ID Users](img/Users.png)
+Figure 2: Configuring Entra ID (formerly Azure AD) users and role-based access control (RBAC) to manage security operations within the Azure tenant.
 
 * **Phase 2: Hybrid Connectivity via Azure Arc* **
 Onboarded the Windows 11 virtual machine into Azure using Azure Arc, enabling it to be managed as a native cloud resource.
 The onboarding process required secure script execution and validation of connectivity between local infrastructure and Azure services. Once connected, the machine became available for monitoring and agent deployment.
 
-Figure 3: Successful integration of the local Windows 11 host into the Azure control plane via Azure Arc, allowing for centralized management and monitoring. ![Azure Arc Connection](img/VM.png)
+ ![Azure Arc Connection](img/VM.png)
+Figure 3: Successful integration of the local Windows 11 host into the Azure control plane via Azure Arc, allowing for centralized management and monitoring.
 
 ### * **Local Network Configuration* **
-Figure 4: Configuring static IPv4 settings on the local virtual network to ensure consistent communication between the Domain Controller and the endpoint. ![Network config](img/IP_CONFIG.png)
 
+ ![Network config](img/IP_CONFIG.png)
+Figure 4: Configuring static IPv4 settings on the local virtual network to ensure consistent communication between the Domain Controller and the endpoint.
 * **Phase 3: Log Ingestion and Detection Setup* **
 Deployed the Azure Monitor Agent and configured Data Collection Rules (DCRs) to ingest Windows Security Events into the SIEM.
 Focused on high-value authentication logs:
@@ -47,7 +52,8 @@ Focused on high-value authentication logs:
 	• Event ID 4624 – Successful logons
 To validate the pipeline, I simulated a brute-force login attempt against the Windows 11 machine and confirmed that logs were ingested and queryable in near real time.
 
-Figure 5: Real-time telemetry ingestion in Microsoft Sentinel. The table summarizes high-fidelity Security Events (EventIDs 4624, 4625) captured from the Arc-enabled endpoint. ![Sentinel Log Telemetry](img/logs.png)
+ ![Sentinel Log Telemetry](img/logs.png)
+Figure 5: Real-time telemetry ingestion in Microsoft Sentinel. The table summarizes high-fidelity Security Events (EventIDs 4624, 4625) captured from the Arc-enabled endpoint.
 
 * **Phase 4: Detection and Query Development* **
 Developed KQL queries to identify suspicious authentication patterns and support SOC-style monitoring.
@@ -92,7 +98,8 @@ These challenges improved my understanding of how cloud constraints, endpoint se
 	• Validated SIEM effectiveness through simulated attack scenarios
 	• Gained practical experience troubleshooting real-world cloud and endpoint issues
 
-Figure 6: Azure Portal dashboard overview, showing active monitoring resources and the SIEM-LAB Log Analytics Workspace status. ![Summary](img/Dashboard_Azure.png)
+![Summary](img/Dashboard_Azure.png)
+Figure 7: Azure Portal dashboard overview, showing active monitoring resources and the SIEM-LAB Log Analytics Workspace status. 
 
 ## 7. Conclusion
 This project demonstrates the ability to design, implement, and validate a hybrid SIEM solution using modern cloud security tools. More importantly, it reflects an understanding of how to move beyond setup into detection, validation, and troubleshooting—skills directly applicable to SOC analyst and entry-level cybersecurity roles.
