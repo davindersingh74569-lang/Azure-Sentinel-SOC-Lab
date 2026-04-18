@@ -76,7 +76,7 @@ During onboarding, the deployment failed due to Azure naming restrictions. I dia
 Telemetry Validation:
 Rather than assuming successful setup, I actively validated the data pipeline by generating authentication events and confirming ingestion, query visibility, and detection capability within the SIEM.
 These challenges improved my understanding of how cloud constraints, endpoint security controls, and identity configurations interact in a real environment.
-Link: ![Global Admin Role Assignment](img/Roles.jpg)
+Link: ![Global Admin Role Assignment](img/Roles.png)
 
 ## 6. Key Outcomes
 	• Built a functional hybrid SOC lab integrating on-prem and cloud systems
