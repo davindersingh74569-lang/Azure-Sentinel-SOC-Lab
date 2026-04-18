@@ -23,14 +23,17 @@ The solution follows a hybrid monitoring model where on-premises systems are ext
 	• VirtualBox-hosted Windows Server 2022 (Domain Controller)
 	• Windows 11 (client workstation used for attack simulation and telemetry validation)
 This architecture reflects a real-world enterprise approach where hybrid environments are monitored through a unified SIEM.
+Link: ![VirtualBox Infrastructure](img/VMS.png)
 
 ## 3. Implementation Approach
 * **Phase 1: Identity and Cloud Foundation* **
 Configured Azure identity and governance to support SIEM deployment. This included establishing administrative access, organising resources into a dedicated group, and deploying a Log Analytics Workspace to act as the central data store for security logs.
+Link: ![Entra ID Users](img/Users.png)
 
 * **Phase 2: Hybrid Connectivity via Azure Arc* **
 Onboarded the Windows 11 virtual machine into Azure using Azure Arc, enabling it to be managed as a native cloud resource.
 The onboarding process required secure script execution and validation of connectivity between local infrastructure and Azure services. Once connected, the machine became available for monitoring and agent deployment.
+Link: ![Azure Arc Connection](img/VM.png)
 
 * **Phase 3: Log Ingestion and Detection Setup* **
 Deployed the Azure Monitor Agent and configured Data Collection Rules (DCRs) to ingest Windows Security Events into the SIEM.
@@ -38,6 +41,7 @@ Focused on high-value authentication logs:
 	• Event ID 4625 – Failed logon attempts
 	• Event ID 4624 – Successful logons
 To validate the pipeline, I simulated a brute-force login attempt against the Windows 11 machine and confirmed that logs were ingested and queryable in near real time.
+Link: ![Sentinel Log Telemetry](img/logs.png)
 
 * **Phase 4: Detection and Query Development* **
 Developed KQL queries to identify suspicious authentication patterns and support SOC-style monitoring.
@@ -51,6 +55,7 @@ SecurityEvent
 ```
 This allows identification of accounts experiencing repeated failed login attempts within a short timeframe, a common indicator of password-based attacks.
 Additionally, correlation between failed and successful logins was used to simulate detection of potential account compromise scenarios.
+
 
 ## 4. Technical Skills Demonstrated
 	• SIEM configuration and log ingestion using Microsoft Sentinel
@@ -71,6 +76,7 @@ During onboarding, the deployment failed due to Azure naming restrictions. I dia
 Telemetry Validation:
 Rather than assuming successful setup, I actively validated the data pipeline by generating authentication events and confirming ingestion, query visibility, and detection capability within the SIEM.
 These challenges improved my understanding of how cloud constraints, endpoint security controls, and identity configurations interact in a real environment.
+Link: ![Global Admin Role Assignment](img/Roles.jpg)
 
 ## 6. Key Outcomes
 	• Built a functional hybrid SOC lab integrating on-prem and cloud systems
@@ -82,4 +88,3 @@ These challenges improved my understanding of how cloud constraints, endpoint se
 ## 7. Conclusion
 This project demonstrates the ability to design, implement, and validate a hybrid SIEM solution using modern cloud security tools. More importantly, it reflects an understanding of how to move beyond setup into detection, validation, and troubleshooting—skills directly applicable to SOC analyst and entry-level cybersecurity roles.
 
-<img width="644" height="2079" alt="image" src="https://github.com/user-attachments/assets/14ca6e3f-b034-4e51-8ed0-934a473f6f45" />
