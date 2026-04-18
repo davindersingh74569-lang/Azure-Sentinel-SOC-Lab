@@ -28,14 +28,17 @@ Figure 1: On-premises virtualization environment in Oracle VirtualBox, featuring
 ## 3. Implementation Approach
 * **Phase 1: Identity and Cloud Foundation* **
 Configured Azure identity and governance to support SIEM deployment. This included establishing administrative access, organising resources into a dedicated group, and deploying a Log Analytics Workspace to act as the central data store for security logs.
+
 Figure 2: Configuring Entra ID (formerly Azure AD) users and role-based access control (RBAC) to manage security operations within the Azure tenant. ![Entra ID Users](img/Users.png)
 
 * **Phase 2: Hybrid Connectivity via Azure Arc* **
 Onboarded the Windows 11 virtual machine into Azure using Azure Arc, enabling it to be managed as a native cloud resource.
 The onboarding process required secure script execution and validation of connectivity between local infrastructure and Azure services. Once connected, the machine became available for monitoring and agent deployment.
+
 Figure 3: Successful integration of the local Windows 11 host into the Azure control plane via Azure Arc, allowing for centralized management and monitoring. ![Azure Arc Connection](img/VM.png)
+
 ### * **Local Network Configuration* **
-Figure 4: Configuring static IPv4 settings on the local virtual network to ensure consistent communication between the Domain Controller and the endpoint. ![Network config](img/IPCONFIG.png)
+Figure 4: Configuring static IPv4 settings on the local virtual network to ensure consistent communication between the Domain Controller and the endpoint. ![Network config](img/IP_CONFIG.png)
 
 * **Phase 3: Log Ingestion and Detection Setup* **
 Deployed the Azure Monitor Agent and configured Data Collection Rules (DCRs) to ingest Windows Security Events into the SIEM.
@@ -43,6 +46,7 @@ Focused on high-value authentication logs:
 	• Event ID 4625 – Failed logon attempts
 	• Event ID 4624 – Successful logons
 To validate the pipeline, I simulated a brute-force login attempt against the Windows 11 machine and confirmed that logs were ingested and queryable in near real time.
+
 Figure 5: Real-time telemetry ingestion in Microsoft Sentinel. The table summarizes high-fidelity Security Events (EventIDs 4624, 4625) captured from the Arc-enabled endpoint. ![Sentinel Log Telemetry](img/logs.png)
 
 * **Phase 4: Detection and Query Development* **
@@ -78,6 +82,7 @@ During onboarding, the deployment failed due to Azure naming restrictions. I dia
 Telemetry Validation:
 Rather than assuming successful setup, I actively validated the data pipeline by generating authentication events and confirming ingestion, query visibility, and detection capability within the SIEM.
 These challenges improved my understanding of how cloud constraints, endpoint security controls, and identity configurations interact in a real environment.
+ 
  ![Global Admin Role Assignment](img/Roles.png)
 
 ## 6. Key Outcomes
@@ -87,7 +92,7 @@ These challenges improved my understanding of how cloud constraints, endpoint se
 	• Validated SIEM effectiveness through simulated attack scenarios
 	• Gained practical experience troubleshooting real-world cloud and endpoint issues
 
-Figure 6: Azure Portal dashboard overview, showing active monitoring resources and the SIEM-LAB Log Analytics Workspace status. ![Summary](img/DashboardAzure.png)
+Figure 6: Azure Portal dashboard overview, showing active monitoring resources and the SIEM-LAB Log Analytics Workspace status. ![Summary](img/Dashboard_Azure.png)
 
 ## 7. Conclusion
 This project demonstrates the ability to design, implement, and validate a hybrid SIEM solution using modern cloud security tools. More importantly, it reflects an understanding of how to move beyond setup into detection, validation, and troubleshooting—skills directly applicable to SOC analyst and entry-level cybersecurity roles.
