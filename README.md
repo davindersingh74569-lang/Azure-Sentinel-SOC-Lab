@@ -12,13 +12,16 @@ By leveraging Microsoft Sentinel and Azure Arc, I established centralized visibi
 
 ## 2. Architecture Overview
 The solution follows a hybrid monitoring model where on-premises systems are extended into the cloud control plane.
+
 **Cloud Layer:**
 	• Microsoft Entra ID (identity and access management)
 	• Azure Resource Groups (resource organisation and governance)
 	• Log Analytics Workspace (central log repository)
 	• Microsoft Sentinel (SIEM and detection engine)
+
 **Bridge Layer:**
 	• Azure Arc used to onboard non-Azure machines securely over HTTPS (port 443)
+
 **Endpoint Layer:**
 	• VirtualBox-hosted Windows Server 2022 (Domain Controller)
 	• Windows 11 (client workstation used for attack simulation and telemetry validation)
@@ -28,6 +31,7 @@ This architecture reflects a real-world enterprise approach where hybrid environ
 Figure 1: On-premises virtualization environment in Oracle VirtualBox, featuring a Windows Server 2022 Domain Controller and a Windows 11 target workstation. 
 
 ## 3. Implementation Approach
+
 **Phase 1: Identity and Cloud Foundation**
 Configured Azure identity and governance to support SIEM deployment. This included establishing administrative access, organising resources into a dedicated group, and deploying a Log Analytics Workspace to act as the central data store for security logs.
 
